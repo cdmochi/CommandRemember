@@ -1,31 +1,38 @@
 using System.Collections.Generic;
 using Commander.Data;
+using Commander.Controllers;
 using CommanderModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Commander.Controllers
-{
+namespace Commander.Controllers {
 
-    //api/commanders
     [Route("api/commands")]
     [ApiController]
     public class CommandsController : ControllerBase
     {
+        private readonly IMockCommanderRepository _repository;
 
-        private readonly IMockCommanderRepositoryImpl _repository = new MockCommanderRepositoryImpl();
+        public CommandsController(IMockCommanderRepository repository) 
+        {
+            _repository = repository;
+        }
+
+        //private readonly IMockCommanderRepositoryImpl _repository = new MockCommanderRepositoryImpl();
         //GET api/commands
         [HttpGet]
         public ActionResult <IEnumerable<Command>> GetAllCommands() 
         {
             var commands = _repository.GetAppCommands();
-
             return Ok(commands);
         }
 
         [HttpGet("{id}")]
-        public ActionResult <Command> GetThingWithId(int id) {
+        public ActionResult <Command> GetThingWithId(int id) 
+        {
             var thing = _repository.GetCommandById(id);
             return Ok(thing);
         }
     }
-} 
+
+}
+

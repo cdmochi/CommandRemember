@@ -5,7 +5,7 @@ using CommanderModels;
 
 namespace Commander.Data
 {
-    public class MockCommanderRepositoryImpl : IMockCommanderRepository
+    public class MockCommanderRepository : IMockCommanderRepository
     {
         public IEnumerable<Command> GetAppCommands()
         {
