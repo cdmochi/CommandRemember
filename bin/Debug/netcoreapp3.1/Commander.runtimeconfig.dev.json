@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/home/cdmochi/.dotnet/store/|arch|/|tfm|",
+      "/home/cdmochi/.nuget/packages"
+    ]
+  }
+}
