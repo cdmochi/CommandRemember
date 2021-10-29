@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Commander.Data;
-using Commander.Controllers;
-using CommanderModels;
+using Commander.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Commander.Controllers {
@@ -17,7 +16,6 @@ namespace Commander.Controllers {
             _repository = repository;
         }
 
-        //private readonly IMockCommanderRepositoryImpl _repository = new MockCommanderRepositoryImpl();
         //GET api/commands
         [HttpGet]
         public ActionResult <IEnumerable<Command>> GetAllCommands() 
@@ -33,6 +31,5 @@ namespace Commander.Controllers {
             return Ok(thing);
         }
     }
-
 }
 

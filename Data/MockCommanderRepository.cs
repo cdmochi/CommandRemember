@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
-using Commander.Data;
-using CommanderModels;
+using Commander.Models;
 
 namespace Commander.Data
 {
