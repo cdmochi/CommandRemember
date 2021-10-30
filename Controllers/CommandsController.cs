@@ -1,6 +1,10 @@
+using System;
 using System.Collections.Generic;
-using Commander.Data;
+using System.Threading.Tasks;
 using Commander.Models;
+using Commander.Repository;
+using Commander.Repository.Interfaces;
+using Commander.Services.interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Commander.Controllers {
@@ -9,27 +13,31 @@ namespace Commander.Controllers {
     [ApiController]
     public class CommandsController : ControllerBase
     {
-        private readonly IMockCommanderRepository _repository;
+        private readonly ICommandService _service;
 
-        public CommandsController(IMockCommanderRepository repository) 
+        public CommandsController(ICommandService service)
         {
-            _repository = repository;
+            _service = service;
         }
-
         //GET api/commands
         [HttpGet]
-        public ActionResult <IEnumerable<Command>> GetAllCommands() 
+        public ActionResult <List<Command>> GetAllCommands() 
         {
-            var commands = _repository.GetAppCommands();
+            var commands = _service.GetAppCommands();
             return Ok(commands);
         }
 
         [HttpGet("{id}")]
-        public ActionResult <Command> GetThingWithId(int id) 
+        public ActionResult<Command> GetCommandById(int id) 
         {
-            var thing = _repository.GetCommandById(id);
-            return Ok(thing);
+            var commandTask = _service.GetCommandById(id);
+            return Ok(commandTask);
+        }
+
+        public ActionResult<Exception> Add(Command command)
+        {
+            var task = _service.Add(command);
+            return Ok(task);
         }
     }
 }
-

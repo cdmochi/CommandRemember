@@ -4,6 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Commander.Data;
+using Commander.Repository;
+using Commander.Repository.Interfaces;
+using Commander.Services;
+using Commander.Services.interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Commander
@@ -23,7 +27,8 @@ namespace Commander
                 options.UseSqlServer(Configuration.GetConnectionString("DevelopmentConnection"))
             );
             services.AddControllers();
-	    services.AddScoped<IMockCommanderRepository, MockCommanderRepository>();
+	        services.AddTransient<IMockCommanderRepository, MockCommanderRepository>();
+            services.AddTransient<ICommandService, CommandService>();
             services.AddSwaggerGen();
         }
 

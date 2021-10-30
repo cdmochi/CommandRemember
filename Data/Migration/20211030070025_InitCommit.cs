@@ -2,7 +2,7 @@
 
 namespace Commander.Data.Migration
 {
-    public partial class InitDatabase : Microsoft.EntityFrameworkCore.Migrations.Migration
+    public partial class InitCommit : Microsoft.EntityFrameworkCore.Migrations.Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
